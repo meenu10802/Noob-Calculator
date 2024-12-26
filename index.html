@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meenu's Calculator</title>
+    <style>
+        body{
+            height: 100vh;
+            width: auto;
+            margin: 0%;
+            padding: 0%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /*h1's property is block level-next to next by default so even if
+                                    you make that inline flex direction is row by default so are stuck at two places 
+                                    at h1 deafult block properoty and flex direction of body
+                                    you need to change that and not inline on thuis h1*/
+            
+        }
+        .buttons{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 5px;
+        }
+        #display{
+            width:96.1%;
+        }
+        button{
+            border: 2px solid black;
+            border-radius: 90px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: green;
+        }
+        #diff:hover{
+            background-color: orange;
+        }
+        .container{
+            background-color: black;
+           
+        }
+        h1{
+           color: green;
+        }
+        input{
+            height: 30px;
+            padding-top: 10px;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>Papa's Calci</h1>
+    <div class="container">
+        
+        <input id="display" readonly>
+        <div class="buttons">
+            <button id="c">C</button>
+            <button onclick="operator('%')" class="diff">%</button>
+            <button onclick="operator('/')" class="diff">/</button>
+            <button onclick="calculate('=')" id="diff">=</button>
+            <button onclick="number(7)">7</button>
+            <button onclick="number(8)">8</button>
+            <button onclick="number(9)">9</button>
+            <button onclick="operator('*')"class="diff">*</button>
+            <button onclick="number(4)">4</button>
+            <button onclick="number(5)">5</button>
+            <button onclick="number(6)">6</button>
+            <button onclick="operator('-')" class="diff">-</button>
+            <button onclick="number(1)">1</button>
+            <button onclick="number(2)">2</button>
+            <button onclick="number(3)">3</button>
+            <button onclick="operator('+')" class="diff">+</button>
+            <button onclick="number(0)">0</button>
+            <button onclick="number('.')" class="diff">.</button>
+            <button id="x">CLR</button>
+            
+        </div>
+    </div>
+    <script>
+        const box=document.querySelector("#display")
+        const button=document.querySelector('button')
+        
+      function number(x){
+        box.value+=x;
+        const clear=document.querySelector("#c")
+        clear.addEventListener("click",()=>{
+            box.value=""
+        })
+      }
+      const clr=document.querySelector("#x")
+        clr.addEventListener("click",()=>{
+            box.value = box.value.slice(0, -1);
+           
+        })
+      function operator(x){
+        box.value+=x;
+      }
+      function clear(){
+
+      }
+      function calculate(){
+        try{
+            box.value=eval(box.value);
+        }
+        catch(e){
+            box.value=("Enter properly macha. WHAT!")
+        }
+      }
+    </script>
+</body>
+</html>
